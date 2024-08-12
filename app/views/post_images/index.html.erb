@@ -1,8 +1,21 @@
 <h1>投稿一覧</h1>
 
-<%= @lists.each do |list| %>
+<% @post_images.each do |post_image| %>
 
-  <P>タイトル</P>
-  <span><%= list.title %></span>
+<div>
+
+  <%= link_to post_image_path(post_image.id) do %>
+    <%= image_tag post_image.get_image %>
+  <% end %>
+
+  <P>投稿ユーザー画像 : <%= image_tag post_image.user.get_profile_image(100,100) %></P>
+
+  <p>投稿ユーザー画像 : <%= image_tag 'sample-author1.jpg' %></p>
+  <P>ショップ名 : <%= post_image.shop_name %></P>
+  <P>説明 : <%= post_image.caption %></P>
+  <p>ユーザーネーム : <%= post_image.user.name %></p>
+  <p><%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %></p>
+
+</div>
 
 <% end %>
